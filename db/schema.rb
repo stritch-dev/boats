@@ -19,11 +19,11 @@ ActiveRecord::Schema.define(version: 2018_05_15_160246) do
 
   create_table "reservations", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "boats_id"
-    t.datetime "start"
-    t.datetime "end"
+    t.integer "boat_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.integer "recurring_instances"
-    t.index ["boats_id"], name: "index_reservations_on_boats_id"
+    t.index ["boat_id"], name: "index_reservations_on_boat_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 

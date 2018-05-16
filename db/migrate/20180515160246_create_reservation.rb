@@ -4,9 +4,9 @@ class CreateReservation < ActiveRecord::Migration[5.2]
   def change
     create_table :reservations do |t|
       t.belongs_to :user, index: true
-      t.belongs_to :boats, index: true
-      t.datetime :start
-      t.datetime :end
+      t.belongs_to :boat, index: true
+      t.datetime :start_time
+      t.datetime :end_time
       t.integer :recurring_instances
     end
   end
