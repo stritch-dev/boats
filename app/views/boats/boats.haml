@@ -1,0 +1,17 @@
+%html
+  %head
+    %title Boat List
+  %body
+    %p 
+      You are logged in as #{User.find(session[:user_id]).name}
+    - Boat.all.each do |boat|
+      %p
+        %a{ href: "/boats/#{boat.id}"}
+          = boat.name 
+          = boat.size_description
+
+    %h3 Other Actions
+    %p
+      %a(href = "boats/new") Add a new boat to the fleet
+    %p
+      %a(href = "/") Home

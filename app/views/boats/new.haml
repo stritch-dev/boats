@@ -1,0 +1,15 @@
+%html
+  %head
+    %title Create Boat
+  %body
+    %form(action='/boats' method='post')
+      %label Boat Name:
+      %input(type='text' name='name')
+      %select(id='size_description' name='size_description')
+        #params
+        -['(choose size)','single','double','quad','pair','four','eight'].each do |i|
+          %option{:value => i}= i 
+      %input(type='submit' value='Create Boat' id='submit')
+
+
+

@@ -1,0 +1,18 @@
+%html
+  %head
+    %title Reservation List
+  %body
+    %p 
+      You are logged in as #{User.find(session[:user_id]).name}
+    - Reservation.all.each do |reservation|
+      %p
+        %a{ href: "/reservation/#{reservation.id}" }
+          = reservation.boat.name 
+          = reservation.boat.size_description
+          = reservation.user.name
+
+    %h3 Other Actions
+    %p
+      %a(href = "reservations/new") Make a new reservation 
+    %p
+      %a(href = "/") Home

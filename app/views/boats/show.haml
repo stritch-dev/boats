@@ -1,0 +1,13 @@
+%html
+  %head
+    %title Boat Details
+  %body
+    %label Boat Name:
+    = @boat.name 
+    %br
+    %label Boat Type:
+    = @boat.size_description
+    %br
+    %a(href="/boats/edit/#{@boat.id}") Edit 
+    %br
+    %a(href="/boats/delete/#{@boat.id}") Delete

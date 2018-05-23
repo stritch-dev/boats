@@ -1,0 +1,21 @@
+%html
+  %head
+    %title Club Managment System
+  %body
+    - if logged_in?
+      %p 
+        You are logged in as #{User.find(session[:user_id]).name}
+      %p
+        %a{ href: "/boats" } Boat List
+      %p
+        %a{ href: "/reservations" } Reservations
+      %p
+        %a{ href: "/logout" } Logout
+    -  else
+      %p
+        %a{ href: "/signup" } Create a New User
+      %p
+        %a{ href: "/login" } Login
+
+
+

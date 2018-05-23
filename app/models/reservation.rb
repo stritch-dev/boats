@@ -46,4 +46,13 @@ class Reservation < ActiveRecord::Base
       true
     end
   end
+
+  def boat
+    Boat.find self.boat_id
+  end
+
+  def user
+    User.find self.user_id
+  end
+
 end

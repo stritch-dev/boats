@@ -9,8 +9,11 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "secret"
   end
 
+  before do
+    if !logged_in? then haml :'/users/login' end
+  end
+
   get '/' do 
-    if session then session.clear end
     haml :index
   end
 
