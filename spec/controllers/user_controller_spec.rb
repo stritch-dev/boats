@@ -93,9 +93,10 @@ describe UserController do
     it "lets a user logout if they are already logged in" do
       login @fred
 
-      get '/logout'
+      visit '/'
+      click_link 'Logout'
 
-      expect(last_response.location).to include("/login")
+      expect(page.current_path).to include("/login")
     end
 
     it 'does not let a user logout if not logged in' do
@@ -184,8 +185,9 @@ describe UserController do
       it 'they have the options to edit and delete that boat' do
         login @fred
         visit "/boats/#{@raven.id}"
-        expect(page.body).to include("/boats/edit/#{@raven.id}")
-        expect(page.body).to include("/boats/delete/#{@raven.id}")
+        expect(page.body).to include("/boats/#{@raven.id}/edit")
+        expect(page).to have_selector(:link_or_button, 'Delete')
+        # expect(page.body).to include("/boats/#{@raven.id}/delete")
       end
     end
 
@@ -198,12 +200,4 @@ describe UserController do
       end
     end
   end
-
-  def login(user)
-    visit '/login'
-    fill_in(:name, :with => user.name)
-    fill_in(:password, :with => user.password)
-    click_button 'submit'
-  end
-
 end

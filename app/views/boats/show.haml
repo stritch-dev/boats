@@ -8,6 +8,14 @@
     %label Boat Type:
     = @boat.size_description
     %br
-    %a(href="/boats/edit/#{@boat.id}") Edit 
+    %a(href="/boats/#{@boat.id}/edit") Edit
     %br
-    %a(href="/boats/delete/#{@boat.id}") Delete
+    -# TODO make button look like link -- add styles to page?
+    -# TODO is there a way to make this code cleaner? Like extract the forms to just have links while still following REST conventions?
+    %form(action='/boats/#{@boat.id}' method='post')
+      %input(type='hidden' name='boat_id' value="#{@boat.id}")
+      %input(type='hidden' name='_method' value="delete")
+      %input(type='submit' id='submit' value='Delete')
+
+
+

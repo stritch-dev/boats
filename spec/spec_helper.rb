@@ -29,4 +29,13 @@ def app
   Rack::Builder.parse_file('config.ru').first
 end
 
+
+def login(user)
+  visit '/login'
+  fill_in(:name, :with => user.name)
+  fill_in(:password, :with => user.password)
+  click_button 'submit'
+end
+
+
 Capybara.app = app

@@ -1,0 +1,20 @@
+%html
+  %head
+    %title Edit Boat Details
+  %body
+    %form(action="/boats/#{@boat.id}" method='post')
+      %input(type='hidden' name='_method' value='patch')
+
+      %label Boat Name:
+      %input(type='text' name='name' value="#{@boat.name}")
+      %select(id='size_description' name='size_description')
+        #params
+        -['(choose size)','single','double','quad','pair','four','eight'].each do |i|
+          - if @boat.size_description == i
+            %option{:value => i, :selected => 'selected'}= i 
+          - else
+            %option{:value => i}= i 
+      %input(type='submit' value='Save' id='submit')
+
+
+
