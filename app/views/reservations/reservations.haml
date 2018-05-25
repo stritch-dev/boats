@@ -1,0 +1,46 @@
+%html
+  %head
+    %title Reservation List
+  %body
+    %p 
+      You are logged in as #{User.find(session[:user_id]).name}
+
+    - if Reservation.all.empty?
+    - else
+    - Reservation.all.each do |reservation|
+      %p
+        %p
+        %label 
+          Boat ID:
+        = reservation.boat.id 
+        %br
+        %label 
+          Boat:
+        = reservation.boat.name 
+        %br
+        %label 
+          Size:
+        =reservation.boat.size_description
+        %br
+        %label 
+          User:
+        = reservation.user.name
+        %br
+        %label 
+          Starts:
+        = reservation.start_time.strftime('%A, %B %d %Y at %l %p')
+        %br
+        %label
+          Ends:
+        = reservation.end_time.strftime('%A, %B %d %Y at %l %p')
+        - if session[:user_id] == reservation.user_id
+          %form(id="form_#{reservation.id}" action='/reservations/#{reservation.id}' method='post')
+            %input(type='hidden' name='reservartion_id' value="#{reservation.id}")
+            %input(type='hidden' name='_method' value="delete")
+            %input(type='submit' id="delete_#{reservation.id}" name="delete_#{reservation.id}" value='Delete')
+
+    %h3 Other Actions
+    %p
+      %a(href = "reservations/new") Make a new reservation 
+    %p
+      %a(href = "/") Home

@@ -1,0 +1,30 @@
+%html
+  %head
+    %title Reserve a boat
+    :javascript 
+      $(function() {
+        $( "#start_time, #end_time" ).datepicker({format: 'yyyy-mm-dd'});
+      });
+  %body
+    %form(action='/reservations' method='post')
+      %label
+        Boat Name:
+      %select(id='boat_id' name='boat_id')
+        #params
+          - Boat.all.each do |boat|
+            %option{:value => boat.id, :name => boat.id} #{boat.name}
+      %br
+      %label 
+        Start Time
+      %input(type='text' name='start_time')
+      %br
+      %label
+        End Time:
+      %input(type='text' name='end_time')
+      %br
+      %label
+        Number of Recurrances
+      %input(type='text' id='recurring_instances' name='recurring_instances')
+      %input(type='submit' id='submit' value='Reserve Boat')
+
+
