@@ -5,3 +5,5 @@ use UserController
 use BoatController
 use ReservationController
 run ApplicationController
+
+# OK for flash

@@ -1,4 +1,5 @@
 require './config/environment'
+require 'rack-flash'
 
 class ApplicationController < Sinatra::Base
 
@@ -7,13 +8,14 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions
     set :session_secret, "secret"
+    use Rack::Flash
   end
 
   before do
     if !logged_in? then haml :'/users/login' end
   end
 
-  get '/' do 
+  get '/' do
     haml :index
   end
 

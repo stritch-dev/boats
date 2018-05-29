@@ -90,9 +90,8 @@ describe ReservationController do
       visit '/reservations'
 
       click_button( "delete_#{@reservation_two.id}")
-      raven = Reservation.any? { |r| r.id == @reservation_two.id }
 
-      expect(raven).to eq(false)
+      expect( Reservation.any? { |r| r.id == @reservation_two.id }).to eq(false)
     end
 
     it "prevents users from deleting other users' reservations" do

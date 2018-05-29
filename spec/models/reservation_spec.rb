@@ -115,35 +115,4 @@ describe 'Reservation' do
 
     expect(Reservation.all.count).to eq(before_conflict)
   end
-
-  xit 'prevents reservation of non-existant boat' do
-    before_conflict = Reservation.all.count
-
-    illegal_duratation_reservation = Reservation.new(
-                                        :user_id => @user.id,
-                                        :boat_id => -1,
-                                        :start_time => '03/03/2022 1pm',
-                                        :end_time => '03/03/2022 2pm',
-                                        :recurring_instances => 0
-                                       )
-
-    expect{illegal_duratation_reservation.save!}.to raise_error(ActiveRecord::RecordNotFound)
-  end
-
-  xit 'prevents reservation by non-existant user' do
-    before_conflict = Reservation.all.count
-
-    illegal_duratation_reservation = Reservation.create(
-                                        :user_id => -1,
-                                        :boat_id => @boat.id,
-                                        :start_time => '01/01/2022 1pm',
-                                        :end_time => '01/01/2022 2pm',
-                                        :recurring_instances => 0
-                                       )
-
-    expect(Reservation.all.count).to eq(before_conflict)
-  end
-
-
-
 end

@@ -1,11 +1,11 @@
 %html
   %head
     %title Reserve a boat
-    :javascript 
-      $(function() {
-        $( "#start_time, #end_time" ).datepicker({format: 'yyyy-mm-dd'});
-      });
   %body
+    - if flash.has?(:message)
+      #{flash[:message]}
+      %br
+      %br
     %form(action='/reservations' method='post')
       %label
         Boat Name:

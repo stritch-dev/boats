@@ -2,8 +2,6 @@
   %head
     %title Club Managment System
   %body
-    - if flash.has?(:message)
-      #{flash[:message]}
     - if logged_in?
       %p 
         You are logged in as #{User.find(session[:user_id]).name}
